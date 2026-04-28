@@ -1,0 +1,428 @@
+/* ============================================
+   IMPORTS
+============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+/* ============================================
+   RESET & BASE
+============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* ============================================
+   PAGE BACKGROUND
+============================================ */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #9CD5FF, #355872);
+    padding: 50px 20px;
+}
+
+/* ============================================
+   CARD CONTAINER (login, register, create, edit)
+============================================ */
+.container {
+    background: rgba(187, 225, 250, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 55px 50px;
+    border-radius: 16px;
+    width: 520px;
+    max-width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25),
+                0 1px 0 rgba(255,255,255,0.6) inset;
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   HEADINGS
+============================================ */
+h1 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a3a4f;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a3a4f;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+/* Subtitle under h1 */
+.subtitle {
+    font-size: 13px;
+    color: #5a7a90;
+    margin-top: 6px;
+    margin-bottom: 40px;
+}
+
+/* ============================================
+   FORM GROUPS & LABELS
+============================================ */
+.form-group {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c5364;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* ============================================
+   INPUTS
+============================================ */
+input {
+    width: 100%;
+    padding: 14px 18px;
+    margin: 0;
+    border-radius: 8px;
+    border: 2px solid #a8d4f0;
+    background: rgba(255,255,255,0.85);
+    font-size: 14px;
+    color: #1a3a4f;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+input:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.2);
+    background: white;
+}
+
+input::placeholder {
+    color: #a0b8c8;
+}
+
+/* ============================================
+   BUTTONS
+============================================ */
+button, .btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4facfe, #0077ff);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 119, 255, 0.35);
+}
+
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+/* Full width button */
+.btn-full {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* Button variants */
+.btn-success {
+    background: linear-gradient(135deg, #43e97b, #38a169);
+}
+.btn-success:hover {
+    box-shadow: 0 8px 20px rgba(56, 161, 105, 0.35);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #f66, #e53e3e);
+}
+.btn-danger:hover {
+    box-shadow: 0 8px 20px rgba(229, 62, 62, 0.35);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f6d365, #f09819);
+    color: #1a3a4f;
+}
+.btn-warning:hover {
+    box-shadow: 0 8px 20px rgba(240, 152, 25, 0.35);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #b8d8f0, #7aafc8);
+    color: #1a3a4f;
+}
+.btn-secondary:hover {
+    box-shadow: 0 8px 20px rgba(122, 175, 200, 0.35);
+}
+
+/* Small button */
+.btn-sm {
+    padding: 8px 18px;
+    font-size: 13px;
+    border-radius: 6px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ============================================
+   LINKS
+============================================ */
+a {
+    text-decoration: none;
+    color: #0077ff;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #005bcc;
+    text-decoration: underline;
+}
+
+/* ============================================
+   ERROR & SUCCESS MESSAGES
+============================================ */
+.alert {
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.alert-error {
+    background: #ffe0e0;
+    color: #c0392b;
+    border-left: 4px solid #e53e3e;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #276749;
+    border-left: 4px solid #38a169;
+}
+
+/* ============================================
+   DIVIDER
+============================================ */
+.divider {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #7aafc8;
+    font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #a8d4f0;
+}
+
+/* ============================================
+   PARAGRAPH / HELPER TEXT
+============================================ */
+p {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    line-height: 1.7;
+    color: #2c5364;
+    font-size: 14px;
+}
+
+/* ============================================
+   DASHBOARD LAYOUT
+============================================ */
+.dashboard {
+    background: rgba(255, 255, 255, 0.97);
+    padding: 55px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    max-width: 1150px;
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+
+/* Dashboard top bar */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 44px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid #e8f4fd;
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+    color: #1a3a4f;
+    margin-bottom: 0;
+}
+
+.dashboard-header .header-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+/* ============================================
+   TABLE
+============================================ */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-top: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead {
+    background: linear-gradient(135deg, #4facfe, #0077ff);
+    color: white;
+}
+
+thead th {
+    padding: 20px 24px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e8f4fd;
+    transition: background 0.2s;
+}
+
+tbody tr:hover {
+    background: #f0f8ff;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody td {
+    padding: 20px 24px;
+    color: #2c5364;
+    vertical-align: middle;
+    line-height: 1.6;
+}
+
+/* Table action buttons */
+.table-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+.empty-state {
+    text-align: center;
+    padding: 70px 20px;
+    color: #7aafc8;
+}
+
+.empty-state p {
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+/* ============================================
+   LOGOUT LINK STYLE
+============================================ */
+.logout-link {
+    color: #e53e3e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.logout-link:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 600px) {
+    body {
+        padding: 30px 14px;
+    }
+
+    .container {
+        padding: 40px 24px;
+        width: 100%;
+    }
+
+    .dashboard {
+        padding: 30px 18px;
+        width: 100%;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+        margin-bottom: 28px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .table-actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    thead th,
+    tbody td {
+        padding: 14px 14px;
+    }
+}
