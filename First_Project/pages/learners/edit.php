@@ -8,15 +8,11 @@ if(!isset($_SESSION['user_id'])){
 
 require '../../config/db.php';
 
+$isadmin= $_SESSION['role']==='admin';
 $id= $_GET['id'] ?? null;
 
 if(!$id){
     header("Location: ../dashboard.php");
-    exit();
-}
-
-if($_SESSION['role'] !== 'admin' && $id != $_SESSION['user_id']){
-    echo "Access denied. You can only edit your own profile.";
     exit();
 }
 
@@ -25,6 +21,15 @@ $learner= mysqli_fetch_assoc($result);
 
 if(!$learner){
     die("Learner not found.");
+}
+
+$isMine= $learner['created_by'] === $_SESSION['user_id'];
+
+if(!$isadmin && !$isMine){
+    echo "<p style='color:red; text-align:center; margin-top:50px;'>
+            Access denied. You can only edit learners you created.
+          </p>";
+    exit();
 }
 
 $error="";

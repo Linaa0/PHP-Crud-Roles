@@ -5,11 +5,6 @@ if(!isset($_SESSION['user_id'])){
     exit();
 }
 
-if ($_SESSION['role'] !== 'admin') {
-    echo "Access denied. Admins only.";
-    exit();
-}
-
 require "../../config/db.php";
 
 $error= "";
@@ -19,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $email= mysqli_real_escape_string($conn, trim($_POST['email']));
     $phone= mysqli_real_escape_string($conn, trim($_POST['phone']));
     $address= mysqli_real_escape_string($conn, trim($_POST['address']));
+    $created_by= $_SESSION['user_id'];
 
     $check= mysqli_query($conn, "SELECT id FROM learners WHERE email= '$email'");
 
@@ -26,9 +22,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $error= "Email already exists.";
             } 
             else {
-                $sql= "INSERT INTO learners(name, email, phone, address)
+                $sql= "INSERT INTO learners(name, email, phone, address, created_by)
                 VALUES
-                ('$name', '$email', '$phone', '$address')";
+                ('$name', '$email', '$phone', '$address', '$created_by')";
 
                 if (mysqli_query($conn, $sql)){
                     header("Location: ../dashboard.php");

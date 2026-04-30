@@ -6,7 +6,16 @@ header("Location: login.php");
 exit();
 }
 
+
 require '../config/db.php';
+
+$check = mysqli_query($conn, "SELECT id FROM users WHERE id = {$_SESSION['user_id']}");
+
+if (mysqli_num_rows($check) === 0) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 
 $isadmin= $_SESSION['role']==='admin';
 
@@ -34,9 +43,8 @@ if (!$result) {
 </h1>
 
 <div class="header-actions">
-    <?php if ($isadmin):?>
 <a href="learners/create.php" class="btn btn-success">+ Add Learner</a>
-<?php endif; ?>
+
 <a href="../includes/logout.php" class="logout-link" >Logout</a>
 </div>
 </div>
@@ -71,16 +79,21 @@ if (!$result) {
         <td>
             <div class="table-actions">
                 <?php
-                $canEdit= $isadmin || $learner['id'] == $_SESSION['user_id'];
+                $isMine= $learner['created_by'] == $_SESSION['user_id'];
+                $canEdit= $isadmin || $isMine;
                 ?>
 
                 <?php if ($canEdit): ?>
                 <a href="learners/edit.php?id=<?=$learner['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                 <?php endif; ?>
 
-                <?php if($isadmin): ?>
-            <a href="learners/delete.php? id=<?=$learner['id'] ?>" class="btn btn-danger btn-sm"
+                <?php if($canEdit): ?>
+            <a href="learners/delete.php?id=<?=$learner['id'] ?>" class="btn btn-danger btn-sm"
             onclick="return confirm('Delete this learner?')">Delete</a>
+            <?php endif; ?>
+      
+            <?php if (!$canEdit): ?>
+              <span style="color:#aaa; font-size:13px;">No access</span>
             <?php endif; ?>
  </div>
         </td>
